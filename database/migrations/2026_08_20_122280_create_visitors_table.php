@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('purpose')->nullable();
             $table->timestamp('entry_time')->nullable();
             $table->timestamp('exit_time')->nullable();
-            $table->enum('status', ['expected', 'checked_in', 'checked_out', 'denied'])->default('expected');
+            $table->string('status', 50)->default('pending');
             $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });

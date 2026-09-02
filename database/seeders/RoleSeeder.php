@@ -21,27 +21,33 @@ class RoleSeeder extends Seeder
             [
                 'name' => 'Master Admin',
                 'slug' => 'master-admin',
-                'description' => 'Master Administrator with full system access',
+                'description' => 'Master Administrator with full system control and management access',
             ],
             [
-                'name' => 'Society Admin',
-                'slug' => 'society-admin',
-                'description' => 'Society Administrator managing society level operations',
-            ],
-            [
-                'name' => 'Security Guard',
-                'slug' => 'security-guard',
-                'description' => 'Security Guard managing visitor logs and gate entry/exit',
+                'name' => 'Admin',
+                'slug' => 'admin',
+                'description' => 'Administrator managing society application data and users',
             ],
             [
                 'name' => 'User',
                 'slug' => 'user',
-                'description' => 'Society resident user',
+                'description' => 'Standard resident user with personal access to society services',
+            ],
+            [
+                'name' => 'Security Guard',
+                'slug' => 'security-guard',
+                'description' => 'Security Guard managing visitor entries, gate desk, and security logs',
             ],
         ];
 
         foreach ($roles as $role) {
-            Role::create($role);
+            Role::firstOrCreate(
+                ['slug' => $role['slug']],
+                [
+                    'name' => $role['name'],
+                    'description' => $role['description'],
+                ]
+            );
         }
     }
 }
