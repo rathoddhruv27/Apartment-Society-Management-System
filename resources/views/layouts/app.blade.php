@@ -172,24 +172,26 @@
             </nav>
 
             <!-- Bottom Dev Quick Role Switcher -->
+            @role('master-admin')
             <div class="p-4 border-t border-slate-800/80 bg-slate-900/50">
                 <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">⚡ Quick Role Switcher</p>
                 <form action="{{ route('switch-role') }}" method="POST" class="grid grid-cols-2 gap-1.5">
                     @csrf
                     <button type="submit" name="role_slug" value="master-admin" class="px-2 py-1.5 text-xs font-semibold rounded-lg bg-purple-950/80 hover:bg-purple-900 text-purple-300 border border-purple-800/50 transition">
-                        👑 Master
+                        Master
                     </button>
                     <button type="submit" name="role_slug" value="admin" class="px-2 py-1.5 text-xs font-semibold rounded-lg bg-blue-950/80 hover:bg-blue-900 text-blue-300 border border-blue-800/50 transition">
-                        🛡️ Admin
+                        Admin
                     </button>
                     <button type="submit" name="role_slug" value="user" class="px-2 py-1.5 text-xs font-semibold rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-800/50 transition">
-                        🏠 User
+                        User
                     </button>
                     <button type="submit" name="role_slug" value="security-guard" class="px-2 py-1.5 text-xs font-semibold rounded-lg bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-800/50 transition">
-                        👮 Guard
+                        Guard
                     </button>
                 </form>
             </div>
+            @endrole
         </aside>
 
         <!-- Main Content Area -->
