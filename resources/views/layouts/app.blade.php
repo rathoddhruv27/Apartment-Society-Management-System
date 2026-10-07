@@ -180,7 +180,7 @@
 
             <!-- Bottom Dev Quick Role Switcher -->
             @role('master-admin')
-            <div class="p-4 border-t border-slate-200 bg-slate-50">
+            <div class="p-4 border-t border-slate-200 bg-slate-50" style="display: none !important;">
                 <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Quick Role Switcher</p>
                 <form action="{{ route('switch-role') }}" method="POST" class="grid grid-cols-2 gap-1.5">
                     @csrf
@@ -199,6 +199,20 @@
                 </form>
             </div>
             @endrole
+
+            @auth
+            <div class="p-4 border-t border-slate-200 mt-auto">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 border border-slate-300 text-sm font-semibold rounded-xl text-slate-700 bg-white hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200 shadow-sm transition">
+                        <svg class="w-5 h-5 mr-2 text-slate-400 group-hover:text-rose-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        Sign Out
+                    </button>
+                </form>
+            </div>
+            @endauth
         </aside>
 
         <!-- Main Content Area -->
@@ -208,20 +222,6 @@
                 <div class="flex items-center space-x-3">
                     <h2 class="text-lg font-bold text-slate-900">@yield('title', 'Dashboard')</h2>
                 </div>
-
-                @auth
-                <div class="flex items-center space-x-4">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-slate-300 text-xs font-semibold rounded-lg text-slate-600 bg-white hover:bg-slate-50 hover:text-slate-900 shadow-sm transition">
-                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            Sign Out
-                        </button>
-                    </form>
-                </div>
-                @endauth
             </header>
 
             <!-- Main Scrollable Body -->
