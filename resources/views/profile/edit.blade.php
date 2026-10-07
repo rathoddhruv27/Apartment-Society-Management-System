@@ -6,38 +6,38 @@
 <div class="max-w-5xl mx-auto space-y-6">
 
     <!-- Profile Header Banner Card -->
-    <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-purple-950 text-white shadow-xl relative overflow-hidden">
+    <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-100/80 via-purple-50 to-blue-50 border border-indigo-200/80 shadow-sm relative overflow-hidden">
         <div class="relative z-10 flex flex-col sm:flex-row items-center sm:items-start gap-6">
             <!-- Avatar Display -->
             <div class="relative group">
                 @if($user->avatar_url)
-                    <img id="banner-avatar-preview" src="{{ $user->avatar_url }}" alt="{{ $user->full_name }}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-4 ring-white/20 shadow-lg">
+                    <img id="banner-avatar-preview" src="{{ $user->avatar_url }}" alt="{{ $user->full_name }}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-4 ring-white shadow-md">
                 @else
-                    <div id="banner-avatar-fallback" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 ring-4 ring-white/20 shadow-lg flex items-center justify-center text-3xl font-extrabold text-white">
+                    <div id="banner-avatar-fallback" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 ring-4 ring-white shadow-md flex items-center justify-center text-3xl font-extrabold text-white">
                         {{ strtoupper(substr($user->name, 0, 1)) }}{{ $user->second_name ? strtoupper(substr($user->second_name, 0, 1)) : '' }}
                     </div>
-                    <img id="banner-avatar-preview" src="" alt="Avatar Preview" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-4 ring-white/20 shadow-lg hidden">
+                    <img id="banner-avatar-preview" src="" alt="Avatar Preview" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-4 ring-white shadow-md hidden">
                 @endif
             </div>
 
             <div class="text-center sm:text-left flex-1">
                 <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-2">
-                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ $user->full_name }}</h1>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{{ $user->full_name }}</h1>
                     @role('master-admin')
-                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-500/30 text-purple-200 border border-purple-400/30">Master Admin</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-100 text-purple-700 border border-purple-200">Master Admin</span>
                     @endrole
                     @role('admin')
-                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-500/30 text-blue-200 border border-blue-400/30">Property Manager</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700 border border-blue-200">Property Manager</span>
                     @endrole
                     @role('user')
-                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/30 text-emerald-200 border border-emerald-400/30">Resident Member</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">Resident Member</span>
                     @endrole
                     @role('security-guard')
-                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/30 text-amber-200 border border-amber-400/30">Security Officer</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200">Security Officer</span>
                     @endrole
                 </div>
-                <p class="text-sm text-indigo-200 font-medium">{{ $user->email }} • {{ $user->phone ?? 'No phone added' }}</p>
-                <p class="text-xs text-slate-400 mt-2">Member since {{ $user->created_at ? $user->created_at->format('M Y') : 'N/A' }}</p>
+                <p class="text-sm text-slate-600 font-medium">{{ $user->email }} • {{ $user->phone ?? 'No phone added' }}</p>
+                <p class="text-xs text-slate-500 mt-2">Member since {{ $user->created_at ? $user->created_at->format('M Y') : 'N/A' }}</p>
             </div>
         </div>
     </div>

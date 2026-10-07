@@ -54,6 +54,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/buildings', [BuildingController::class, 'index'])->name('buildings.index');
         Route::post('/buildings', [BuildingController::class, 'store'])->name('buildings.store');
+        Route::put('/buildings/{building}', [BuildingController::class, 'update'])->name('buildings.update');
+        Route::delete('/buildings/{building}', [BuildingController::class, 'destroy'])->name('buildings.destroy');
     });
 
     // Visitor Desk (Security Guard, Admin, Master Admin & Resident Invites)

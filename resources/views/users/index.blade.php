@@ -19,22 +19,22 @@
             @csrf
             <div>
                 <label class="block text-xs text-slate-500 mb-1">Full Name</label>
-                <input type="text" name="name" required class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500" placeholder="Jane Doe">
+                <input type="text" name="name" required class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition" placeholder="Jane Doe">
             </div>
 
             <div>
                 <label class="block text-xs text-slate-500 mb-1">Email Address</label>
-                <input type="email" name="email" required class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500" placeholder="user@domain.com">
+                <input type="email" name="email" required class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition" placeholder="user@domain.com">
             </div>
 
             <div>
                 <label class="block text-xs text-slate-500 mb-1">Phone Number</label>
-                <input type="text" name="phone" class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500" placeholder="+1234567890">
+                <input type="text" name="phone" class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition" placeholder="+1234567890">
             </div>
 
             <div>
                 <label class="block text-xs text-slate-500 mb-1">Assigned Role</label>
-                <select name="role_id" required class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500">
+                <select name="role_id" required class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition">
                     @foreach($roles as $role)
                         @if($role->slug === 'master-admin' && !auth()->user()->hasRole('master-admin'))
                             @continue
@@ -47,8 +47,8 @@
             <div>
                 <label class="block text-xs text-slate-500 mb-1">Password</label>
                 <div class="relative">
-                    <input type="password" id="create-password" name="password" required class="w-full pl-3 pr-10 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500" placeholder="••••••••">
-                    <button type="button" onclick="toggleCreatePassword()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-indigo-600 focus:outline-none transition">
+                    <input type="password" id="create-password" name="password" required class="w-full pl-3 pr-10 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition" placeholder="••••••••">
+                    <button type="button" onclick="toggleCreatePassword()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-emerald-600 focus:outline-none transition">
                         <svg id="eye-icon-create" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -61,7 +61,7 @@
             </div>
 
             <div class="sm:col-span-2 lg:col-span-5 flex justify-end">
-                <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition shadow-lg">
+                <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition shadow-lg shadow-emerald-600/30">
                     + Create Account
                 </button>
             </div>
@@ -92,7 +92,7 @@
                                 <div class="text-slate-500 text-[10px]">{{ $u->phone ?? 'No phone' }}</div>
                             </td>
                             <td class="p-4">
-                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase {{ $u->hasRole('master-admin') ? 'bg-purple-100 text-purple-700 border border-purple-200' : ($u->hasRole('admin') ? 'bg-blue-100 text-blue-700 border border-blue-200' : ($u->hasRole('security-guard') ? 'bg-amber-100 text-amber-700 border border-amber-200' : 'bg-emerald-100 text-emerald-700 border border-emerald-200')) }}">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase {{ $u->hasRole('master-admin') ? 'bg-purple-100 text-purple-700 border border-purple-200' : ($u->hasRole('admin') ? 'bg-teal-100 text-teal-700 border border-teal-200' : ($u->hasRole('security-guard') ? 'bg-amber-100 text-amber-700 border border-amber-200' : 'bg-emerald-100 text-emerald-700 border border-emerald-200')) }}">
                                     {{ $u->role ? $u->role->name : 'No Role' }}
                                 </span>
                             </td>
@@ -103,11 +103,9 @@
                             </td>
                             <td class="p-4 text-right space-x-2">
                                 @if($u->id !== auth()->id())
-                                    <form action="{{ route('users.destroy', $u) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this user?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-rose-400 hover:text-rose-300 font-semibold">Delete</button>
-                                    </form>
+                                    <button type="button" onclick="document.getElementById('delete-user-modal-{{ $u->id }}').classList.remove('hidden')" class="px-3 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs transition border border-rose-200">
+                                        Delete
+                                    </button>
                                 @endif
                             </td>
                         </tr>
@@ -120,7 +118,40 @@
         </div>
     </div>
 
-</div>
+@push('modals')
+    <!-- Modals rendered at root body level so overlay covers entire screen including top header & sidebar -->
+    @foreach($users as $u)
+        @if($u->id !== auth()->id())
+            <div id="delete-user-modal-{{ $u->id }}" class="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-xs flex items-start justify-center pt-6 sm:pt-10 p-4 hidden overflow-y-auto text-left font-normal">
+                <div class="glass-card w-full max-w-md p-6 sm:p-8 rounded-3xl bg-white shadow-2xl relative text-center">
+                    <div class="w-14 h-14 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center mb-4 border border-rose-200">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </div>
+
+                    <h3 class="text-xl font-extrabold text-slate-900">Delete User Account</h3>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                        Are you sure you want to delete user <strong class="text-slate-900 font-bold">"{{ $u->name }}"</strong> ({{ $u->email }})? This action cannot be undone.
+                    </p>
+
+                    <div class="flex items-center justify-center space-x-3 mt-6">
+                        <button type="button" onclick="document.getElementById('delete-user-modal-{{ $u->id }}').classList.add('hidden')" class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">
+                            Cancel
+                        </button>
+                        <form action="{{ route('users.destroy', $u) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md shadow-rose-600/30 transition">
+                                Yes, Delete User
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endforeach
+@endpush
 
 <script>
     function toggleCreatePassword() {
