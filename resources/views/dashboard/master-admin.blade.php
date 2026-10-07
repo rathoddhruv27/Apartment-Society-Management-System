@@ -52,13 +52,13 @@
             <h3 class="text-lg font-extrabold text-slate-900 mb-5">Role Distribution</h3>
             <div class="space-y-3">
                 @foreach($roles as $role)
-                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between group hover:border-indigo-200 hover:bg-indigo-50/30 transition">
-                        <div>
-                            <span class="text-sm font-bold text-slate-900 group-hover:text-indigo-700 transition">{{ $role->name }}</span>
-                            <p class="text-xs text-slate-500 font-medium mt-0.5">{{ $role->description }}</p>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-indigo-200 hover:bg-indigo-50/30 transition">
+                        <div class="min-w-0 flex-1">
+                            <span class="text-sm font-bold text-slate-900 group-hover:text-indigo-700 transition block truncate">{{ $role->name }}</span>
+                            <p class="text-xs text-slate-500 font-medium mt-0.5 leading-relaxed">{{ $role->description }}</p>
                         </div>
-                        <div class="text-right">
-                            <span class="px-3 py-1.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold border border-indigo-200">
+                        <div class="text-left sm:text-right shrink-0">
+                            <span class="px-3 py-1.5 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold border border-indigo-200 inline-block">
                                 {{ $role->users_count }} Users
                             </span>
                         </div>
@@ -71,14 +71,16 @@
             <h3 class="text-lg font-extrabold text-slate-900 mb-5">Recent User Accounts</h3>
             <div class="space-y-3">
                 @foreach($recentUsers as $u)
-                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between group hover:border-slate-200 transition">
-                        <div>
-                            <p class="text-sm font-bold text-slate-900">{{ $u->name }}</p>
-                            <p class="text-xs text-slate-500 font-medium mt-0.5">{{ $u->email }}</p>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-slate-200 transition">
+                        <div class="min-w-0 flex-1">
+                            <p class="text-sm font-bold text-slate-900 truncate">{{ $u->name }}</p>
+                            <p class="text-xs text-slate-500 font-medium mt-0.5 truncate">{{ $u->email }}</p>
                         </div>
-                        <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border {{ $u->hasRole('master-admin') ? 'bg-purple-100 border-purple-200 text-purple-700' : ($u->hasRole('admin') ? 'bg-blue-100 border-blue-200 text-blue-700' : ($u->hasRole('security-guard') ? 'bg-amber-100 border-amber-200 text-amber-700' : 'bg-emerald-100 border-emerald-200 text-emerald-700')) }}">
-                            {{ $u->role ? $u->role->name : 'No Role' }}
-                        </span>
+                        <div class="shrink-0 text-left sm:text-right">
+                            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border inline-block {{ $u->hasRole('master-admin') ? 'bg-purple-100 border-purple-200 text-purple-700' : ($u->hasRole('admin') ? 'bg-blue-100 border-blue-200 text-blue-700' : ($u->hasRole('security-guard') ? 'bg-amber-100 border-amber-200 text-amber-700' : 'bg-emerald-100 border-emerald-200 text-emerald-700')) }}">
+                                {{ $u->role ? $u->role->name : 'No Role' }}
+                            </span>
+                        </div>
                     </div>
                 @endforeach
             </div>

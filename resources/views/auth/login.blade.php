@@ -14,10 +14,10 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-100 via-indigo-50/40 to-slate-200 flex items-center justify-center p-4 md:p-8">
 
-    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl shadow-slate-300/60 border border-slate-200/80 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px]">
+    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl shadow-slate-300/60 border border-slate-200/80 overflow-hidden grid grid-cols-1 lg:grid-cols-12 lg:min-h-[640px]">
         
         <!-- Left Side: Professional Society Showcase Banner -->
-        <div class="lg:col-span-5 relative hidden lg:flex flex-col justify-between p-8 bg-slate-900 text-white overflow-hidden">
+        <div class="lg:col-span-5 relative flex flex-col justify-between p-6 lg:p-8 bg-slate-900 text-white overflow-hidden min-h-[400px] lg:min-h-0">
             <!-- Background Image with Soft Gradient Overlay -->
             <img src="{{ asset('images/society_complex.png') }}" alt="Residential Society Complex" class="absolute inset-0 w-full h-full object-cover object-center transform scale-105 transition duration-1000 hover:scale-100">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-slate-900/30"></div>
@@ -59,22 +59,9 @@
         </div>
 
         <!-- Right Side: Login Form & Role Shortcuts -->
-        <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between bg-white">
+        <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center bg-white space-y-6">
             
             <div>
-                <!-- Brand Header for Mobile / Tablet -->
-                <div class="flex items-center space-x-3 mb-6 lg:hidden">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-bold text-slate-900">ASMS Portal</h1>
-                        <p class="text-xs text-indigo-600 font-medium">Apartment Society Management</p>
-                    </div>
-                </div>
-
                 <div class="mb-6">
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Sign in to your account</h2>
                     <p class="text-sm text-slate-500 mt-1">Select a role or enter your credentials below to access your portal.</p>
@@ -199,7 +186,7 @@
             </div>
 
             <!-- Footer Note -->
-            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
                 <span>Apartment Society Management System &copy; 2026</span>
                 <span>Default Pass: <code class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-mono font-semibold">password</code></span>
             </div>

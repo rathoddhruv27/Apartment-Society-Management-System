@@ -16,6 +16,7 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -56,14 +57,17 @@
         }
     </style>
 </head>
-<body class="h-full bg-slate-50 font-sans antialiased text-slate-800">
+<body class="bg-slate-50 font-sans antialiased text-slate-800" x-data="{ sidebarOpen: false }">
 
-    <div class="min-h-screen flex flex-col md:flex-row">
+    <div class="flex min-h-screen">
         
+        <!-- Mobile Sidebar Overlay -->
+        <div x-show="sidebarOpen" class="fixed inset-0 z-40 bg-slate-900/50 md:hidden" @click="sidebarOpen = false" x-transition.opacity style="display: none;"></div>
+
         <!-- Sidebar Navigation -->
-        <aside class="w-full md:w-72 glass-panel flex-shrink-0 flex flex-col">
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-72 glass-panel flex flex-col transition-transform duration-300 md:translate-x-0">
             <!-- App Brand Header -->
-            <div class="h-16 px-6 flex items-center justify-between border-b border-slate-200">
+            <div class="h-16 px-6 flex items-center justify-between">
                 <a href="{{ route('dashboard') }}" class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,16 +220,21 @@
         </aside>
 
         <!-- Main Content Area -->
-        <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-50/50">
+        <div class="flex-1 flex flex-col min-w-0 bg-slate-50/50 md:pl-72 w-full">
             <!-- Top Header -->
-            <header class="h-16 glass-header flex items-center justify-between px-6 z-10">
+            <header class="h-16 glass-header sticky top-0 flex items-center justify-between px-4 sm:px-6 z-30 shrink-0">
                 <div class="flex items-center space-x-3">
+                    <button @click="sidebarOpen = true" class="md:hidden p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                     <h2 class="text-lg font-bold text-slate-900">@yield('title', 'Dashboard')</h2>
                 </div>
             </header>
 
             <!-- Main Scrollable Body -->
-            <main class="flex-1 overflow-y-auto p-6">
+            <main class="flex-1 p-4 sm:p-6">
                 @if(session('success'))
                     <div class="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm flex items-center shadow-sm">
                         <svg class="w-5 h-5 mr-3 flex-shrink-0 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
