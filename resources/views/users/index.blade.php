@@ -36,6 +36,9 @@
                 <label class="block text-xs text-slate-500 mb-1">Assigned Role</label>
                 <select name="role_id" required class="w-full px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-indigo-500">
                     @foreach($roles as $role)
+                        @if($role->slug === 'master-admin' && !auth()->user()->hasRole('master-admin'))
+                            @continue
+                        @endif
                         <option value="{{ $role->id }}">{{ $role->name }} ({{ $role->slug }})</option>
                     @endforeach
                 </select>

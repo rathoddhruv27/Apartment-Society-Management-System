@@ -32,6 +32,11 @@ trait HasRolesAndPermissions
             return in_array($this->role->slug, $roles, true);
         }
 
+        if (str_contains($roles, ',')) {
+            $roleArray = array_map('trim', explode(',', $roles));
+            return in_array($this->role->slug, $roleArray, true);
+        }
+
         return $this->role->slug === $roles;
     }
 

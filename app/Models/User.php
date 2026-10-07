@@ -25,11 +25,32 @@ class User extends Authenticatable
     protected $fillable = [
         'role_id',
         'name',
+        'second_name',
         'email',
         'phone',
+        'avatar',
         'password',
         'status',
     ];
+
+    /**
+     * Get user's full name.
+     */
+    public function getFullNameAttribute(): string
+    {
+        return trim($this->name . ' ' . ($this->second_name ?? ''));
+    }
+
+    /**
+     * Get user's avatar URL.
+     */
+    public function getAvatarUrlAttribute(): ?string
+    {
+        if ($this->avatar && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->avatar)) {
+            return asset('storage/' . $this->avatar);
+        }
+        return null;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
