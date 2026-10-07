@@ -143,7 +143,6 @@
                             class="p-3 rounded-xl bg-purple-50/70 border border-purple-200/80 hover:bg-purple-100/90 text-left transition duration-150 group">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-bold text-purple-900 flex items-center space-x-1">
-                                    <span>👑</span>
                                     <span>Master Admin</span>
                                 </span>
                                 <span class="text-[10px] text-purple-600 font-bold opacity-0 group-hover:opacity-100 transition">Fill →</span>
@@ -156,7 +155,6 @@
                             class="p-3 rounded-xl bg-blue-50/70 border border-blue-200/80 hover:bg-blue-100/90 text-left transition duration-150 group">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-bold text-blue-900 flex items-center space-x-1">
-                                    <span>🛡️</span>
                                     <span>Society Admin</span>
                                 </span>
                                 <span class="text-[10px] text-blue-600 font-bold opacity-0 group-hover:opacity-100 transition">Fill →</span>
@@ -169,7 +167,6 @@
                             class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80 hover:bg-emerald-100/90 text-left transition duration-150 group">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-bold text-emerald-900 flex items-center space-x-1">
-                                    <span>🏠</span>
                                     <span>Resident User</span>
                                 </span>
                                 <span class="text-[10px] text-emerald-600 font-bold opacity-0 group-hover:opacity-100 transition">Fill →</span>
@@ -182,7 +179,6 @@
                             class="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80 hover:bg-amber-100/90 text-left transition duration-150 group">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-bold text-amber-900 flex items-center space-x-1">
-                                    <span>👮</span>
                                     <span>Security Guard</span>
                                 </span>
                                 <span class="text-[10px] text-amber-600 font-bold opacity-0 group-hover:opacity-100 transition">Fill →</span>
