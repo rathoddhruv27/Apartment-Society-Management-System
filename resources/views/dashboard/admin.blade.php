@@ -9,7 +9,7 @@
     <div class="p-6 rounded-2xl bg-gradient-to-r from-blue-100 via-indigo-50 to-white border border-blue-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <div class="flex items-center space-x-2 text-blue-700 text-xs font-bold uppercase tracking-wider mb-1.5">
-                <span>🛡️ Society Administrator</span>
+                <span>Society Administrator</span>
             </div>
             <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Application & User Operations</h2>
             <p class="text-sm text-slate-600 mt-1 font-medium">Manage society residents, apartment allocations, visitor logs, and resident complaints.</p>

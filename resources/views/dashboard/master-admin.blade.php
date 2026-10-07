@@ -9,7 +9,7 @@
     <div class="p-6 rounded-2xl bg-gradient-to-r from-purple-100 via-indigo-50 to-white border border-purple-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <div class="flex items-center space-x-2 text-purple-700 text-xs font-bold uppercase tracking-wider mb-1.5">
-                <span>👑 Full System Control Mode</span>
+                <span>Full System Control Mode</span>
             </div>
             <h2 class="text-2xl font-extrabold text-slate-900">System Administration Dashboard</h2>
             <p class="text-sm text-slate-600 mt-1 font-medium">You have full root access to system settings, RBAC role matrices, permissions, and society metrics.</p>

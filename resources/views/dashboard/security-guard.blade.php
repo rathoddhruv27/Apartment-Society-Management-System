@@ -9,7 +9,7 @@
     <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-100 via-yellow-50 to-white border border-amber-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <div class="flex items-center space-x-2 text-amber-700 text-xs font-bold uppercase tracking-wider mb-1.5">
-                <span>👮 Gate Security Desk Operational Mode</span>
+                <span>Gate Security Desk Operational Mode</span>
             </div>
             <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Main Security Entry/Exit Desk</h2>
             <p class="text-sm text-slate-600 mt-1 font-medium">Logged in as Security Officer. Authorized exclusively for visitor check-in, departure check-out, and vehicle gate verification.</p>

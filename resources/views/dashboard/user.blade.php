@@ -9,7 +9,7 @@
     <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-100 via-teal-50 to-white border border-emerald-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <div class="flex items-center space-x-2 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-1.5">
-                <span>🏠 Society Resident Portal</span>
+                <span>Society Resident Portal</span>
             </div>
             <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Welcome, {{ auth()->user()->name }}</h2>
             <p class="text-sm text-slate-600 mt-1 font-medium">Manage your flat details, family members, registered vehicles, complaints, and pre-approve gate visitor passes.</p>
