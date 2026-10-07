@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - ASMS Apartment Society Management System</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -22,10 +24,8 @@
 
             <!-- Header Badge -->
             <div class="relative z-10 flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
+                <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg overflow-hidden p-1.5">
+                    <img src="{{ asset('images/favicon.png') }}" alt="ASMS Logo" class="w-full h-full object-contain brightness-0 invert">
                 </div>
                 <div>
                     <h2 class="text-lg font-bold tracking-tight text-white">ASMS Enterprise</h2>
