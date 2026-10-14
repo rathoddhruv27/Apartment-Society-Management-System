@@ -1,13 +1,14 @@
+```blade
 {{-- =============================================
      MODAL BLADE COMPONENT
      resources/views/components/modal.blade.php
 
      Usage:
        <x-modal id="my-modal" title="Modal Title">
-           {{-- form / body content here --}}
+           Form / body content here
            <x-slot name="footer">
-               <button ...>Cancel</button>
-               <button ...>Submit</button>
+               <button>Cancel</button>
+               <button>Submit</button>
            </x-slot>
        </x-modal>
 
@@ -15,20 +16,22 @@
        id        – required, unique HTML id for the overlay div
        title     – modal header title text
        size      – 'md' (default) | 'lg'
-       onClose   – JS expression called when ✕ is clicked
-                   (defaults to hiding the overlay by id)
+       onClose   – JS expression called when close is clicked
+                   Defaults to hiding the overlay by id
      ============================================= --}}
 
 @props([
     'id',
-    'title'  => '',
-    'size'   => 'md',
+    'title'   => '',
+    'size'    => 'md',
     'onClose' => null,
 ])
 
 @php
     $closeAction = $onClose ?? "document.getElementById('{$id}').classList.add('hidden')";
-    $sizeClass   = $size === 'lg' ? 'modal-container modal-container-lg' : 'modal-container';
+    $sizeClass = $size === 'lg'
+        ? 'modal-container modal-container-lg'
+        : 'modal-container';
 @endphp
 
 <div id="{{ $id }}" class="modal-overlay hidden">
@@ -37,7 +40,13 @@
         {{-- Header --}}
         <div class="modal-header">
             <h3 class="modal-title">{{ $title }}</h3>
-            <button type="button" onclick="{{ $closeAction }}" class="modal-close-btn" aria-label="Close modal">✕</button>
+
+            <button
+                type="button"
+                onclick="{{ $closeAction }}"
+                class="modal-close-btn"
+                aria-label="Close modal"
+            >✕</button>
         </div>
 
         {{-- Body --}}
@@ -45,7 +54,6 @@
             {{ $slot }}
         </div>
 
-        {{-- Footer (optional slot) --}}
         @isset($footer)
             <div class="modal-footer">
                 {{ $footer }}
@@ -54,3 +62,4 @@
 
     </div>
 </div>
+```
