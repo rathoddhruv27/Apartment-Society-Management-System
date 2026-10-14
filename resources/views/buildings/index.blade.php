@@ -86,102 +86,75 @@
 @endsection
 
 @push('modals')
-    <!-- Register New Building Modal -->
-    <div id="add-building-modal" class="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-xs flex items-start justify-center pt-6 sm:pt-10 p-4 hidden overflow-y-auto">
-        <div class="glass-card w-full max-w-md p-6 sm:p-8 rounded-3xl bg-white shadow-2xl relative animate-in fade-in zoom-in duration-150">
-            <div class="flex items-center justify-between mb-5">
-                <h3 class="text-lg font-extrabold text-slate-900">Register New Building Block</h3>
-                <button onclick="document.getElementById('add-building-modal').classList.add('hidden')" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center font-bold text-sm">✕</button>
+    {{-- Register New Building Modal --}}
+    <x-modal id="add-building-modal" title="Register New Building Block">
+        <form action="{{ route('buildings.store') }}" method="POST" class="space-y-4">
+            @csrf
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Building / Tower Name <span class="text-rose-500">*</span></label>
+                <input type="text" name="name" required placeholder="e.g. Tower A" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
             </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Building Code <span class="text-rose-500">*</span></label>
+                <input type="text" name="code" required placeholder="e.g. BLK-A" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Total Floors <span class="text-rose-500">*</span></label>
+                <input type="number" name="total_floors" min="1" required placeholder="e.g. 12" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
+            </div>
+            <x-slot name="footer">
+                <button type="button" onclick="document.getElementById('add-building-modal').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
+                <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/30 transition">Create Block</button>
+            </x-slot>
+        </form>
+    </x-modal>
 
-            <form action="{{ route('buildings.store') }}" method="POST" class="space-y-4">
+    {{-- Edit and Delete Modals per Building --}}
+    @foreach($buildings as $building)
+        {{-- Edit Building Modal --}}
+        <x-modal id="edit-building-modal-{{ $building->id }}" title="Edit Building Block">
+            <form action="{{ route('buildings.update', $building) }}" method="POST" class="space-y-4">
                 @csrf
+                @method('PUT')
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Building / Tower Name <span class="text-rose-500">*</span></label>
-                    <input type="text" name="name" required placeholder="e.g. Tower A - Emerald Heights" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20">
+                    <input type="text" name="name" value="{{ old('name', $building->name) }}" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
                 </div>
-
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Building Code <span class="text-rose-500">*</span></label>
-                    <input type="text" name="code" required placeholder="e.g. BLK-A" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20">
+                    <input type="text" name="code" value="{{ old('code', $building->code) }}" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
                 </div>
-
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Total Floors <span class="text-rose-500">*</span></label>
-                    <input type="number" name="total_floors" min="1" required placeholder="e.g. 12" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20">
+                    <input type="number" name="total_floors" value="{{ old('total_floors', $building->total_floors) }}" min="1" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
                 </div>
-
-                <div class="flex justify-end space-x-3 pt-3">
-                    <button type="button" onclick="document.getElementById('add-building-modal').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/30 transition">Create Block</button>
-                </div>
+                <x-slot name="footer">
+                    <button type="button" onclick="document.getElementById('edit-building-modal-{{ $building->id }}').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/30 transition">Update Block</button>
+                </x-slot>
             </form>
-        </div>
-    </div>
+        </x-modal>
 
-    <!-- Edit and Delete Modals per Building -->
-    @foreach($buildings as $building)
-        <!-- Edit Building Modal -->
-        <div id="edit-building-modal-{{ $building->id }}" class="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-xs flex items-start justify-center pt-6 sm:pt-10 p-4 hidden overflow-y-auto">
-            <div class="glass-card w-full max-w-md p-6 sm:p-8 rounded-3xl bg-white shadow-2xl relative animate-in fade-in zoom-in duration-150">
-                <div class="flex items-center justify-between mb-5">
-                    <h3 class="text-lg font-extrabold text-slate-900">Edit Building Block</h3>
-                    <button type="button" onclick="document.getElementById('edit-building-modal-{{ $building->id }}').classList.add('hidden')" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center font-bold text-sm">✕</button>
-                </div>
-
-                <form action="{{ route('buildings.update', $building) }}" method="POST" class="space-y-4">
-                    @csrf
-                    @method('PUT')
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Building / Tower Name <span class="text-rose-500">*</span></label>
-                        <input type="text" name="name" value="{{ old('name', $building->name) }}" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Building Code <span class="text-rose-500">*</span></label>
-                        <input type="text" name="code" value="{{ old('code', $building->code) }}" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Total Floors <span class="text-rose-500">*</span></label>
-                        <input type="number" name="total_floors" value="{{ old('total_floors', $building->total_floors) }}" min="1" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20">
-                    </div>
-
-                    <div class="flex justify-end space-x-3 pt-3">
-                        <button type="button" onclick="document.getElementById('edit-building-modal-{{ $building->id }}').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
-                        <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/30 transition">Update Block</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Delete Building Confirmation Modal -->
-        <div id="delete-building-modal-{{ $building->id }}" class="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-xs flex items-start justify-center pt-6 sm:pt-10 p-4 hidden overflow-y-auto">
-            <div class="glass-card w-full max-w-md p-6 sm:p-8 rounded-3xl bg-white shadow-2xl relative text-center animate-in fade-in zoom-in duration-150">
+        {{-- Delete Building Confirmation Modal --}}
+        <x-modal id="delete-building-modal-{{ $building->id }}" title="Delete Building Block">
+            <div class="text-center">
                 <div class="w-14 h-14 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center mb-4 border border-rose-200">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                 </div>
-
-                <h3 class="text-xl font-extrabold text-slate-900">Delete Building Block</h3>
                 <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-                    Are you sure you want to delete <strong class="text-slate-900 font-bold">"{{ $building->name }}"</strong>? This action cannot be undone and will remove the building block data.
+                    Are you sure you want to delete <strong class="text-slate-900 font-bold">"{{ $building->name }}"</strong>? This cannot be undone.
                 </p>
-
-                <div class="flex items-center justify-center space-x-3 mt-6">
-                    <button type="button" onclick="document.getElementById('delete-building-modal-{{ $building->id }}').classList.add('hidden')" class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">
-                        Cancel
-                    </button>
-                    <form action="{{ route('buildings.destroy', $building) }}" method="POST" class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md shadow-rose-600/30 transition">
-                            Yes, Delete Block
-                        </button>
-                    </form>
-                </div>
             </div>
-        </div>
+            <x-slot name="footer">
+                <button type="button" onclick="document.getElementById('delete-building-modal-{{ $building->id }}').classList.add('hidden')" class="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
+                <form action="{{ route('buildings.destroy', $building) }}" method="POST" class="inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md shadow-rose-600/30 transition">Yes, Delete Block</button>
+                </form>
+            </x-slot>
+        </x-modal>
     @endforeach
 @endpush
