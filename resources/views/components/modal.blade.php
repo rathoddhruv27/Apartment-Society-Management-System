@@ -1,14 +1,15 @@
-```blade
 {{-- =============================================
      MODAL BLADE COMPONENT
      resources/views/components/modal.blade.php
 
      Usage:
        <x-modal id="my-modal" title="Modal Title">
-           Form / body content here
+           <form id="my-form" action="..." method="POST">
+               Form / body content here
+           </form>
            <x-slot name="footer">
-               <button>Cancel</button>
-               <button>Submit</button>
+               <button type="button" onclick="document.getElementById('my-modal').classList.add('hidden')">Cancel</button>
+               <button type="submit" form="my-form">Submit</button>
            </x-slot>
        </x-modal>
 
@@ -62,4 +63,3 @@
 
     </div>
 </div>
-```

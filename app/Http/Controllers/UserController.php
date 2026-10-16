@@ -48,7 +48,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // Security check: Non-master-admins cannot edit a Master Admin account
         if ($user->hasRole('master-admin') && !auth()->user()->hasRole('master-admin')) {
             return back()->with('error', 'Only a Master Admin can edit Master Admin accounts.');
         }

@@ -88,7 +88,7 @@
 @push('modals')
     {{-- Register New Building Modal --}}
     <x-modal id="add-building-modal" title="Register New Building Block">
-        <form action="{{ route('buildings.store') }}" method="POST" class="space-y-4">
+        <form id="add-building-form" action="{{ route('buildings.store') }}" method="POST" class="space-y-4">
             @csrf
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1">Building / Tower Name <span class="text-rose-500">*</span></label>
@@ -102,18 +102,18 @@
                 <label class="block text-xs font-bold text-slate-700 mb-1">Total Floors <span class="text-rose-500">*</span></label>
                 <input type="number" name="total_floors" min="1" required placeholder="e.g. 12" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
             </div>
-            <x-slot name="footer">
-                <button type="button" onclick="document.getElementById('add-building-modal').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
-                <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/30 transition">Create Block</button>
-            </x-slot>
         </form>
+        <x-slot name="footer">
+            <button type="button" onclick="document.getElementById('add-building-modal').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
+            <button type="submit" form="add-building-form" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/30 transition">Create Block</button>
+        </x-slot>
     </x-modal>
 
     {{-- Edit and Delete Modals per Building --}}
     @foreach($buildings as $building)
         {{-- Edit Building Modal --}}
         <x-modal id="edit-building-modal-{{ $building->id }}" title="Edit Building Block">
-            <form action="{{ route('buildings.update', $building) }}" method="POST" class="space-y-4">
+            <form id="edit-building-form-{{ $building->id }}" action="{{ route('buildings.update', $building) }}" method="POST" class="space-y-4">
                 @csrf
                 @method('PUT')
                 <div>
@@ -128,11 +128,11 @@
                     <label class="block text-xs font-bold text-slate-700 mb-1">Total Floors <span class="text-rose-500">*</span></label>
                     <input type="number" name="total_floors" value="{{ old('total_floors', $building->total_floors) }}" min="1" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20">
                 </div>
-                <x-slot name="footer">
-                    <button type="button" onclick="document.getElementById('edit-building-modal-{{ $building->id }}').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/30 transition">Update Block</button>
-                </x-slot>
             </form>
+            <x-slot name="footer">
+                <button type="button" onclick="document.getElementById('edit-building-modal-{{ $building->id }}').classList.add('hidden')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-bold hover:bg-slate-200 transition">Cancel</button>
+                <button type="submit" form="edit-building-form-{{ $building->id }}" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/30 transition">Update Block</button>
+            </x-slot>
         </x-modal>
 
         {{-- Delete Building Confirmation Modal --}}
